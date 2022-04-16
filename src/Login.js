@@ -8,7 +8,6 @@ class Login extends React.Component {
     super();
     // Set initial state
     this.state = {
-      name: "",
       email: "",
       passward: "",
 
@@ -20,10 +19,10 @@ class Login extends React.Component {
   handleLogin(event) {
     event.preventDefault();
     axios
-      .get("http://127.0.0.1:5000/user", {
-        name: this.state.name,
+      .post("http://127.0.0.1:5000/login", {
+        // name: this.state.name,
         email: this.state.email,
-        // password: this.state.passward,
+        password: this.state.passward,
       })
       .then((res) => {
         console.log(res.data);

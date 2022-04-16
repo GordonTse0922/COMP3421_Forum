@@ -27,8 +27,8 @@ class Signup extends React.Component {
     axios
       .post("http://127.0.0.1:5000/user", {
         name: this.state.name,
-        email: this.state.email
-        // password: this.state.passward,
+        email: this.state.email,
+        password: this.state.passward,
         // confirm_password: this.state.confirmPassward,
       })
       .then((res) => {
@@ -170,7 +170,7 @@ class Signup extends React.Component {
             </button>
           </div>
         )}
-        
+
       </>
     );
   }
