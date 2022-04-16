@@ -7,6 +7,7 @@ import About from "./About";
 import Signup from "./Signup";
 import Login from "./Login";
 import Logout from "./Logout";
+import ContantUs from "./contact"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/Login" element={<Login/>} />
           <Route exact path="/Logout" element={<Logout/>} />
           <Route exact path="/About" element={<About/>} />
+          <Route exact path="/ContantUs" element={<ContantUs/>} />
         </Routes>
       </Router>
     </>

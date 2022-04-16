@@ -64,9 +64,7 @@ class Home extends React.Component {
               </li>
 
               <li class="nav-item">
-                <a class="nav-link cool-link" href="contact.js">
-                  Contact
-                </a>
+                <Link to="/ContantUs">Contact</Link>
               </li>
             </ul>
           </div>
