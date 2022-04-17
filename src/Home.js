@@ -66,6 +66,10 @@ class Home extends React.Component {
               <li class="nav-item">
                 <Link to="/ContantUs">Contact</Link>
               </li>
+
+              <li class="nav-item">
+                <Link to="/TopicList">TestTopic</Link>
+              </li>
             </ul>
           </div>
           {/* <form class="form-inline my-2 my-lg-0 " method="GET">
