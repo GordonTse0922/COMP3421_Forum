@@ -27,3 +27,13 @@
 .summary {
     padding: 0 0 0 20px;
 }
+
+.addtopic {
+    float: right;
+    border: 0;
+    background-color: rgb(212, 101, 101);
+    color: #fff;
+    padding: 10px;
+    width: 200px;
+    height: 50px;
+}

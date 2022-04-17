@@ -8,6 +8,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import ContantUs from "./contact"
 import TopicList from "./TopicList" 
+import AddPost from "./AddPost"
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/About" element={<About/>} />
           <Route exact path="/ContantUs" element={<ContantUs/>} />
           <Route exact path="/TopicList" element={<TopicList/>} />
+          <Route exact path="/AddPost" element={<AddPost/>} />
         </Routes>
       </Router>
     </>
