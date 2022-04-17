@@ -6,7 +6,6 @@ import Home from "./Home";
 import About from "./About";
 import Signup from "./Signup";
 import Login from "./Login";
-import Logout from "./Logout";
 import ContantUs from "./contact"
 import TopicList from "./TopicList" 
 
@@ -19,7 +18,6 @@ function App() {
         <Routes>
           <Route exact path="/Signup" element={<Signup/>} />
           <Route exact path="/Login" element={<Login/>} />
-          <Route exact path="/Logout" element={<Logout/>} />
           <Route exact path="/About" element={<About/>} />
           <Route exact path="/ContantUs" element={<ContantUs/>} />
           <Route exact path="/TopicList" element={<TopicList/>} />

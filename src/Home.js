@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Category from "./Category";
 import Signup from "./Signup";
+import Login from "./Login";
 
 // const navigate = useNavigate();
 
@@ -10,7 +12,16 @@ class Home extends React.Component {
     // Set initial state
     this.state = {
       // notSignup: true,
+      showLogin: false,
+      showSignup: false,
+      notLogin: true,
     };
+    this.checkLogin = this.checkLogin.bind(this);
+  }
+
+  checkLogin(childData) {
+    console.log("childData", childData);
+    this.setState({ notLogin: childData });
   }
 
   render() {
@@ -35,10 +46,13 @@ class Home extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mx-auto ">
               <li class="nav-item active">
-                <Link to="/">Home</Link>
+                <a class="nav-link cool-link" href={<Home />}>
+                  Home <span class="sr-only">(current)</span>
+                </a>
+                {/* <Link to="/">Home</Link> */}
               </li>
 
-              <li class="nav-item dropdown">
+              <li class="nav-item active">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -55,62 +69,51 @@ class Home extends React.Component {
                   aria-labelledby="navbarDropdown"
                 ></div>
               </li>
-              <li class="nav-item">
-                {/* <a class="nav-link cool-link" href="https://localhost:3000/About">
-    About
-  </a> */}
-                {/* <Route path="/about" component={About} /> */}
-                <Link to="/About">About</Link>
+              <li class="nav-item active">
+                <Link to="/About" class="nav-link cool-link">About</Link>
               </li>
 
-              <li class="nav-item">
-                <Link to="/ContantUs">Contact</Link>
+              <li class="nav-item active">
+                <Link to="/ContantUs" class="nav-link cool-link">Contact</Link>
               </li>
 
-              <li class="nav-item">
-                <Link to="/TopicList">TestTopic</Link>
+              <li class="nav-item active">
+                <Link to="/TopicList" class="nav-link cool-link">TestTopic</Link>
               </li>
             </ul>
           </div>
-          {/* <form class="form-inline my-2 my-lg-0 " method="GET">
-            <input
-              class="form-control mr-sm-2"
-              type="search"
-              name="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-              Search
-            </button>
-          </form> */}
         </nav>
-        {/* {this.props.notSignup && ( */}
-        <div class="alert alert-success">
-          <div class="btn-group">
-            Create an account for this website{" "}
-            <Link to="/Signup">
+        {this.state.notLogin && (
+          <div class="alert alert-success">
+            <div class="btn-group">
+              Create an account for this website {/* <Link to="/Signup"> */}
               <button
                 type="button"
                 class="btn btn-success ml-2"
                 data-toggle="modal"
                 data-target="#signupModal"
+                onClick={() => this.setState({ showSignup: true })}
               >
                 signup
               </button>
-            </Link>
-            <Link to="/Login">
+              {/* </Link> */}
+              {/* <Link to="/Login"> */}
               <button
+                type="button"
                 class="btn btn-success ml-2"
                 data-toggle="modal"
                 data-target="#loginModal"
+                onClick={() => this.setState({ showLogin: true })}
               >
                 login
               </button>
-            </Link>
+              {/* </Link> */}
+            </div>
           </div>
-        </div>
-        {/* )}  */}
+        )}
+        <Category/>
+        <Login parentCallback={this.checkLogin} />
+        <Signup />
       </>
     );
   }

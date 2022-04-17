@@ -14,10 +14,13 @@ class Login extends React.Component {
       notLogin: true,
     };
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogin(event) {
     event.preventDefault();
+    console.log("this.state.email", this.state.email)
+    console.log("this.state.pw", this.state.passward)
     axios
       .post("http://127.0.0.1:5000/login", {
         // name: this.state.name,
@@ -27,6 +30,7 @@ class Login extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ notLogin: false });
+        this.props.parentCallback(false);
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +39,8 @@ class Login extends React.Component {
 
   handleLogout(event) {
     event.preventDefault();
-    this.setState({notLogin:true});
+    this.setState({notLogin: true});
+    this.props.parentCallback(true);
   }
 
   render() {
@@ -45,7 +50,6 @@ class Login extends React.Component {
         <div
           class="modal fade"
           id="loginModal"
-          tabindex="-1"
           role="dialog"
           aria-labelledby="loginModalLabel"
           aria-hidden="true"
@@ -61,6 +65,7 @@ class Login extends React.Component {
                   class="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -76,6 +81,9 @@ class Login extends React.Component {
                       name="loginEmail"
                       aria-describedby="emailHelp"
                       placeholder="Enter email"
+                      onChange={(event) =>
+                        this.setState({ email: event.target.value })
+                      }
                     />
                     <small id="emailHelp" class="form-text text-muted">
                       We'll never share your email with anyone else.
@@ -89,6 +97,9 @@ class Login extends React.Component {
                       id="loginPass"
                       name="loginPass"
                       placeholder="Password"
+                      onChange={(event) =>
+                        this.setState({ passward: event.target.value })
+                      }
                     />
                   </div>
                   <button type="submit" class="btn btn-primary">
@@ -113,18 +124,18 @@ class Login extends React.Component {
             <div class="btn-group">
               <p class="text-dark">
                 {" "}
-                Welcome <b>{this.state.name}</b>
-                <Link to="/">
+                Welcome <b>{this.state.email}</b>
+                {/* <Link to="/Home"> */}
                   <button
                     type="button"
                     class="btn btn-success ml-2"
-                    data-toggle="modal"
-                    data-target="#signupModal"
+                    // data-toggle="modal"
+                    // data-target="#loginModal"
                     onClick={this.handleLogout}
                   >
                     logout
                   </button>
-                </Link>
+                {/* </Link> */}
               </p>
             </div>
           </div>
