@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Category from "./Category";
 import Signup from "./Signup";
 import Login from "./Login";
-
+import TopicList from "./TopicList";
 
 class Home extends React.Component {
   constructor() {
@@ -17,15 +17,21 @@ class Home extends React.Component {
       showLogin: false,
       showSignup: false,
       notLogin: true,
+      topicId: 0,
     };
     this.checkLogin = this.checkLogin.bind(this);
+    this.checkClickTopic = this.checkClickTopic.bind(this);
   }
 
   checkLogin(childData) {
     console.log("childData", childData);
     this.setState({ notLogin: childData });
   }
-
+  checkClickTopic(childData){
+    this.setState({ showTopic: childData });
+    // this.setState({topicId: id});
+    console.log("showTopic", childData);
+  }
   render() {
     return (
       <>
@@ -114,8 +120,12 @@ class Home extends React.Component {
         <Login parentCallback={this.checkLogin} />
         <Signup />
         {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
-          <Category/>
+          <Category parentCallback={this.checkClickTopic} />
+          
         )}
+        {/* {this.state.showTopic && (
+          <TopicList />
+        )} */}
       </>
     );
   }
