@@ -4,7 +4,6 @@ import Category from "./Category";
 import Signup from "./Signup";
 import Login from "./Login";
 
-// const navigate = useNavigate();
 
 class Home extends React.Component {
   constructor() {
@@ -12,6 +11,9 @@ class Home extends React.Component {
     // Set initial state
     this.state = {
       // notSignup: true,
+      showAbout: false,
+      showContact: false,
+      showTopic: false,
       showLogin: false,
       showSignup: false,
       notLogin: true,
@@ -46,16 +48,16 @@ class Home extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mx-auto ">
               <li class="nav-item active">
-                <a class="nav-link cool-link" href={<Home />}>
+                {/* <a class="nav-link cool-link" href={<Home />} onClick={this.returnHome}>
                   Home <span class="sr-only">(current)</span>
-                </a>
-                {/* <Link to="/">Home</Link> */}
+                </a> */}
+                <Link to="/" class="nav-link cool-link" onClick={() => this.setState({showAbout:false, showContact:false, showTopic:false})}>Home</Link>
               </li>
 
-              <li class="nav-item active">
+              {/* <li class="nav-item active">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="#"
+                  href={<Home />}
                   id="navbarDropdown"
                   role="button"
                   data-toggle="dropdown"
@@ -68,17 +70,18 @@ class Home extends React.Component {
                   class="dropdown-menu"
                   aria-labelledby="navbarDropdown"
                 ></div>
-              </li>
+              </li> */}
+
               <li class="nav-item active">
-                <Link to="/About" class="nav-link cool-link">About</Link>
+                <Link to="/About" class="nav-link cool-link" onClick={() => this.setState({showAbout:true})}>About</Link>
               </li>
 
               <li class="nav-item active">
-                <Link to="/ContantUs" class="nav-link cool-link">Contact</Link>
+                <Link to="/ContantUs" class="nav-link cool-link" onClick={() => this.setState({showContact:true})}>Contact</Link>
               </li>
 
               <li class="nav-item active">
-                <Link to="/TopicList" class="nav-link cool-link">TestTopic</Link>
+                <Link to="/TopicList" class="nav-link cool-link" onClick={() => this.setState({showTopic:true})}>TestTopic</Link>
               </li>
             </ul>
           </div>
@@ -111,11 +114,15 @@ class Home extends React.Component {
             </div>
           </div>
         )}
-        <Category/>
+        
         <Login parentCallback={this.checkLogin} />
         <Signup />
+        {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
+          <Category/>
+        )}
       </>
     );
   }
 }
+
 export default Home;

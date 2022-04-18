@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as React from "react";
+import Home from "./Home";
 
 class ContantUs extends React.Component {  
     constructor() {
@@ -37,6 +38,7 @@ class ContantUs extends React.Component {
 
     render(){
         return (
+            <>
             <div class="container">
                 <h2 class="text-center">CONTACT</h2>
                 <div class="row mt-5">
@@ -44,27 +46,21 @@ class ContantUs extends React.Component {
                         <form onSubmit={this.handleSubmit}>
                             <div class="row">
                                 <div class="col-sm-6 form-group">
-                                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" 
-                                        onChange={(event) =>
-                                            this.setState({ name: event.target.value })
-                                        }
+                                    <input class="form-control" id="name" name="name" placeholder="Name" type="text"
+                                        onChange={(event) => this.setState({ name: event.target.value })}
                                         required>
                                     </input>
                                 </div>
                                 <div class="col-sm-6 form-group">
-                                    <input class="form-control" id="email" name="email" placeholder="Email" type="email" 
-                                        onChange={(event) =>
-                                            this.setState({ email: event.target.value })
-                                        }
+                                    <input class="form-control" id="email" name="email" placeholder="Email" type="email"
+                                        onChange={(event) => this.setState({ email: event.target.value })}
                                         required>
-                                        </input>
+                                    </input>
                                 </div>
                             </div>
-                                <textarea class="form-control" id="feedback" name="feedback" placeholder="Feedback" rows="10"
-                                    onChange={(event) =>
-                                        this.setState({ feedback: event.target.value })
-                                    }>
-                                </textarea><br></br>
+                            <textarea class="form-control" id="feedback" name="feedback" placeholder="Feedback" rows="10"
+                                onChange={(event) => this.setState({ feedback: event.target.value })}>
+                            </textarea><br></br>
                             <div class="row">
                                 <div class="col-sm-12 form-group">
                                     <button class="btn btn-primary pull-right" type="submit">Send</button>
@@ -73,7 +69,7 @@ class ContantUs extends React.Component {
                         </form>
                     </div>
                 </div>
-            </div>
+            </div></>
           );
         };
     }

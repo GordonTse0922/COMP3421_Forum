@@ -44,8 +44,6 @@ class Signup extends React.Component {
   render() {
     return (
       <>
-        {/* <Home notSignup={this.state.notSignup} /> */}
-
         <div
           class="modal fade"
           id="signupModal"
@@ -165,6 +163,7 @@ class Signup extends React.Component {
               class="close"
               data-dismiss="alert"
               aria-label="Close"
+              onClick={() => this.setState({notSignup: true})}
             >
               <span aria-hidden="true">&times;</span>
             </button>

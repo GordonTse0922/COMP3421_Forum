@@ -3,6 +3,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./TopicList.css";
 import { Link } from "react-router-dom";
+import Home from "./Home";
 
 const departmentId = 1;
 
@@ -59,6 +60,7 @@ function TopicList ( ){
     }
 
     return (
+        <>
         <div>
             <div class="container my-2">
                 <div class="jumbotron ">
@@ -105,7 +107,7 @@ function TopicList ( ){
                     </div>
                 ))}
             </div>
-        </div>
+        </div></>
     );
 }
 

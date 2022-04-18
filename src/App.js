@@ -1,14 +1,22 @@
 import logo from "./logo.svg";
+import * as React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Redirect} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import { Link } from "react-router-dom";
 import Home from "./Home";
+import Slide from "./Slide";
+import Category from "./Category";
 import About from "./About";
 import Signup from "./Signup";
 import Login from "./Login";
-import ContantUs from "./contact"
-import TopicList from "./TopicList" 
-import AddPost from "./AddPost"
+import ContantUs from "./contact";
+import TopicList from "./TopicList";
+import AddPost from "./AddPost";
 
 function App() {
   return (

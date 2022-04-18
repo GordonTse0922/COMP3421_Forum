@@ -64,3 +64,9 @@ nav a,
 .card-title a {
   text-decoration: none;
 }
+
+.cat-img {
+  height: 12rem;
+  width: 100%;
+  object-fit: contain;
+}

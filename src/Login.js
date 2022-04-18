@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
+import Slide from "./Slide";
 import { Link } from "react-router-dom";
 
 class Login extends React.Component {
@@ -46,7 +47,6 @@ class Login extends React.Component {
   render() {
     return (
       <>
-        {/* <Home notLogin={this.state.notLogin}/> */}
         <div
           class="modal fade"
           id="loginModal"
