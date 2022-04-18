@@ -37,15 +37,15 @@ class Category extends React.Component {
                 <div class="card h-100" style={{ width: '18rem', margin:'auto' }}>
                   <img src={'images/' + department.name + '.jpg'} class="card-img-top cat-img" alt="AMA" />
                   <div class="card-body">
-                    <Link to={'/TopicList/' + department.id}>
+                    <a href={'/TopicList/' + department.id} >
                       <h5 class="card-title">
                         {department.name}
                       </h5>
-                    </Link>
+                    </a>
                     <p class="card-text text-justify">
                       {department.name}
                     </p>
-                    <a href="" class="btn btn-primary">
+                    <a href={'/TopicList/' + department.id} class="btn btn-primary">
                       View Discussion
                     </a>
                   </div>

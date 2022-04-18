@@ -10,35 +10,33 @@ import Home from "./Home";
 function TopicList (){
     //const { departmentId } = useParams();
 
-    useEffect(() => {
-        getDepartment(departmentId);
-    });
-
-    useEffect(() => {
-        getPosts(departmentId);
-    }, []);
 
     const departmentId = useParams();
     const [posts, setPosts]= useState([]);
-    const [department, setDepartment] = useState();
+    const [department, setDepartment] = useState(0);
     const [numPosts, setNumPosts] = useState(0);
     const [numComments, setNumComments] = useState(0);
 
-    /*componentDidMount() {
-        axios.get("http://127.0.0.1:5000/posts/1")
-            .then(res => {
-                console.log(res);
-                this.setState({ posts: res.data });
-            })
-    }*/
-    
+    useEffect(() => {
+        getDepartment(departmentId);
+        getPosts(departmentId);
+    },[]);
+    // useEffect(()=>getPosts(departmentId)
+    // .then(response=>{
+    //     console.log(response.data.posts);
+    // }),[])
+
+    // useEffect(() => {
+    // }, numPosts);
+
     const getPosts = async departmentId => {
         try{
             departmentId = parseInt(departmentId['id'])
             const res = await axios.get('http://127.0.0.1:5000/posts', {params: {id: departmentId}});
-            setPosts(res.data.posts);
             setNumPosts(res.data.posts.length);
-            console.log(res.data.posts)
+            setPosts(res.data.posts);
+            console.log(res.data.posts);
+            return res;
         } catch (err) {
             console.log(err.message);
         }
@@ -84,8 +82,8 @@ function TopicList (){
                             Remain respectful of other members at all times. </p>*/}
                     </div>
                     <Link to="/AddPost">
-                        <button 
-                            className="addtopic" 
+                        <button
+                            className="addtopic"
                             data-toggle="modal"
                             data-target="#addpostModal"
                         >
