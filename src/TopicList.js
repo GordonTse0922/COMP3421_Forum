@@ -2,20 +2,23 @@ import "./App.css";
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./TopicList.css";
-import { Link } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import Home from "./Home";
 
-const departmentId = 1;
+//const departmentId = 1;
 
-function TopicList ( ){
-    useEffect(() => {
-        getPosts(departmentId);
-    }, []);
+function TopicList (){
+    //const { departmentId } = useParams();
 
     useEffect(() => {
         getDepartment(departmentId);
     });
 
+    useEffect(() => {
+        getPosts(departmentId);
+    }, []);
+
+    const departmentId = useParams();
     const [posts, setPosts]= useState([]);
     const [department, setDepartment] = useState();
     const [numPosts, setNumPosts] = useState(0);
@@ -28,9 +31,11 @@ function TopicList ( ){
                 this.setState({ posts: res.data });
             })
     }*/
-    const getPosts = async id => {
+    
+    const getPosts = async departmentId => {
         try{
-            const res = await axios.get('http://127.0.0.1:5000/posts', {params: {id: id}});
+            departmentId = parseInt(departmentId['id'])
+            const res = await axios.get('http://127.0.0.1:5000/posts', {params: {id: departmentId}});
             setPosts(res.data.posts);
             setNumPosts(res.data.posts.length);
             console.log(res.data.posts)
@@ -39,9 +44,10 @@ function TopicList ( ){
         }
     }
 
-    const getDepartment = async id => {
+    const getDepartment = async departmentId => {
         try{
-            const res = await axios.get("http://127.0.0.1:5000/department", {params: {id: id}});
+            departmentId = parseInt(departmentId['id'])
+            const res = await axios.get("http://127.0.0.1:5000/department", {params: {id: departmentId}});
             setDepartment(res.data.departments.name);
             console.log(department)
         } catch (err) {
@@ -49,9 +55,10 @@ function TopicList ( ){
         }
     }
 
-    const getNumOfComment = async id => {
+    const getNumOfComment = async departmentId => {
         try{
-            const res = await axios.get("http://127.0.0.1:5000/comments", {params: {id: id}});
+            departmentId = parseInt(departmentId['id'])
+            const res = await axios.get("http://127.0.0.1:5000/comments", {params: {id: departmentId}});
             setNumComments(res.data.comments.length);
             console.log(numComments)
         } catch (err) {

@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/Login" element={<Login/>} />
           <Route exact path="/About" element={<About/>} />
           <Route exact path="/ContantUs" element={<ContantUs/>} />
-          <Route exact path="/TopicList" element={<TopicList/>} />
+          <Route exact path="/TopicList/:id" element={<TopicList/>} />
           <Route exact path="/AddPost" element={<AddPost/>} />
         </Routes>
       </Router>

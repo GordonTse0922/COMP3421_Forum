@@ -1,16 +1,58 @@
 import "./App.css";
 import * as React from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Category extends React.Component {
-  
+  constructor() {
+    super();
+    // Set initial state
+    this.state = {
+      departments: [],
+    };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://127.0.0.1:5000/departments")
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ departments: res.data.departments });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
+    const {departments} = this.state
     return (
       <>
         <div class="container my-3">
           <h2 class="text-center"> iDiscuss- Browse Categories </h2>
 
           <div class="row">
-            <div class="col-md-4 my-2 ">
+            {departments.map((department) => (
+              <div class="col-md-4 my-2 ">
+                <div class="card h-100" style={{ width: '18rem', margin:'auto' }}>
+                  <img src={'images/' + department.name + '.jpg'} class="card-img-top cat-img" alt="AMA" />
+                  <div class="card-body">
+                    <Link to={'/TopicList/' + department.id}>
+                      <h5 class="card-title">
+                        {department.name}
+                      </h5>
+                    </Link>
+                    <p class="card-text text-justify">
+                      {department.name}
+                    </p>
+                    <a href="" class="btn btn-primary">
+                      View Discussion
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+            {/*<div class="col-md-4 my-2 ">
               <div class="card h-100" style={{ width: '18rem', margin:'auto' }}>
                 <img src="images/AMA.jpg" class="card-img-top cat-img" alt="AMA" />
                 <div class="card-body">
@@ -112,7 +154,7 @@ class Category extends React.Component {
                   </a>
                 </div>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
       </>

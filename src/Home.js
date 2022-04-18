@@ -79,10 +79,6 @@ class Home extends React.Component {
               <li class="nav-item active">
                 <Link to="/ContantUs" class="nav-link cool-link" onClick={() => this.setState({showContact:true})}>Contact</Link>
               </li>
-
-              <li class="nav-item active">
-                <Link to="/TopicList" class="nav-link cool-link" onClick={() => this.setState({showTopic:true})}>TestTopic</Link>
-              </li>
             </ul>
           </div>
         </nav>
