@@ -3,6 +3,7 @@ import * as React from "react";
 import Home from "./Home";
 import Slide from "./Slide";
 import { Link } from "react-router-dom";
+import { API_URL } from "./App";
 
 class Login extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ class Login extends React.Component {
     console.log("this.state.email", this.state.email)
     console.log("this.state.pw", this.state.passward)
     axios
-      .post("http://127.0.0.1:5000/login", {
+      .post(`${API_URL}/login`, {
         // name: this.state.name,
         email: this.state.email,
         password: this.state.passward,
@@ -66,7 +67,7 @@ class Login extends React.Component {
                   class="close"
                   data-dismiss="modal"
                   aria-label="Close"
-                  
+
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -140,7 +141,7 @@ class Login extends React.Component {
               </p>
             </div>
           </div>
-        )} 
+        )}
       </>
     );
   }
