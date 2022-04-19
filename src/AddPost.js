@@ -27,6 +27,8 @@ class AddPost extends React.Component {
       .post("http://127.0.0.1:5000/post", {
         title: this.state.title,
         content: this.state.content,
+        user_id: 2,
+        department_id: 2,
         // confirm_password: this.state.confirmPassward,
       })
       .then((res) => {

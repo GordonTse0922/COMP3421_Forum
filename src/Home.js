@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Category from "./Category";
 import Signup from "./Signup";
 import Login from "./Login";
+import AddPost from "./AddPost";
 import TopicList from "./TopicList";
 
 class Home extends React.Component {
@@ -16,8 +17,10 @@ class Home extends React.Component {
       showTopic: false,
       showLogin: false,
       showSignup: false,
+      showCategory:false,
       notLogin: true,
       topicId: 0,
+      homeUrl: "http://localhost:3000",
     };
     this.checkLogin = this.checkLogin.bind(this);
     this.checkClickTopic = this.checkClickTopic.bind(this);
@@ -54,10 +57,10 @@ class Home extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mx-auto ">
               <li class="nav-item active">
-                {/* <a class="nav-link cool-link" href={<Home />} onClick={this.returnHome}>
+                {/* <a class="nav-link cool-link" href="http://localhost:3000" onClick={() => this.setState({showCategory:true})}>
                   Home <span class="sr-only">(current)</span>
                 </a> */}
-                <Link to="/" class="nav-link cool-link" onClick={() => this.setState({showAbout:false, showContact:false, showTopic:false})}>Home</Link>
+                <Link to="/" class="nav-link cool-link" onClick={() => this.setState({showCategory:true})}>Home</Link>
               </li>
 
               {/* <li class="nav-item active">
@@ -79,11 +82,11 @@ class Home extends React.Component {
               </li> */}
 
               <li class="nav-item active">
-                <Link to="/About" class="nav-link cool-link" onClick={() => this.setState({showAbout:true})}>About</Link>
+                <Link to="/About" class="nav-link cool-link" onClick={() => this.setState({showCategory:false})}>About</Link>
               </li>
 
               <li class="nav-item active">
-                <Link to="/ContantUs" class="nav-link cool-link" onClick={() => this.setState({showContact:true})}>Contact</Link>
+                <Link to="/ContantUs" class="nav-link cool-link" onClick={() => this.setState({showCategory:false})}>Contact</Link>
               </li>
             </ul>
           </div>
@@ -119,9 +122,12 @@ class Home extends React.Component {
         
         <Login parentCallback={this.checkLogin} />
         <Signup />
-        {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
+        {/* {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
           <Category parentCallback={this.checkClickTopic} />
-          
+        
+        )} */}
+        {this.state.showCategory && (
+          <Category/>
         )}
         {/* {this.state.showTopic && (
           <TopicList />

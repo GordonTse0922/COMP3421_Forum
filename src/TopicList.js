@@ -4,6 +4,7 @@ import axios from "axios";
 import "./TopicList.css";
 import { Link, useParams} from "react-router-dom";
 import Home from "./Home";
+import AddPost from "./AddPost";
 
 //const departmentId = 1;
 
@@ -50,9 +51,9 @@ function TopicList (){
                     });
             }
             
-            console.log("numComments",numComments);
+            // console.log("numComments",numComments);
             // setPostId(res.data.pos)
-            // console.log(res.data.posts);
+            console.log(res.data.posts);
             return res;
         } catch (err) {
             console.log(err.message);
@@ -129,7 +130,9 @@ function TopicList (){
                     </div>
                 ))}
             </div>
-        </div></>
+        </div>
+        <AddPost/>
+        </>
     );
 }
 
