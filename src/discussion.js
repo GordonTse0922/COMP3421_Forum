@@ -34,18 +34,8 @@ function Discussion() {
       setComments(res.data.comments);
       console.log(res.data.comments);
       for (let i = 0; i < res.data.comments.length; i++) {
-        await axios
-          .get(`${API_URL}/user`, {
-            params: { id: res.data.comments[i].user_id },
-          })
-          .then((res2) => {
             // arr.push([res2.data.comments.length])
-            setUsers((users) => [...users, res2.data.user.name]);
-          })
-          .catch((err) => {
-            setUsers((users) => [...users, "Null"]);
-            console.log(err);
-          });
+            setUsers((users) => [...users, res.data.comments[i].user.name]);
       }
       return res;
     } catch (err) {

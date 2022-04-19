@@ -42,42 +42,16 @@ function TopicList() {
       setPosts(res.data.posts);
       console.log(res.data.posts);
       for (let i = 0; i < res.data.posts.length; i++) {
-        await axios
-          .get(`${API_URL}/user`, { params: { id:  res.data.posts[i].user_id} })
-          .then((res2) => {
-            console.log(res2.data);
-            // arr.push([res2.data.comments.length])
             setUsers((users) => [
               ...users,
-              res2.data.user.name,
+              res.data.posts[i].user.name,
             ]);
-          })
-          .catch((err) => {
-            setUsers((users) => [
-              ...users,
-              "Null",
-            ]);
-            console.log(err);
-          });
-
-        let id = res.data.posts[i].id;
-        console.log("id:", id);
-        await axios
-          .get(`${API_URL}/comments`, { params: { postId: id } })
-          .then((res2) => {
-            console.log(res2.data.comments.length);
-            console.log(res2.data);
-            // arr.push([res2.data.comments.length])
             setNumComments((numComments) => [
               ...numComments,
-              res2.data.comments.length,
+              res.data.posts[i].comments.length,
             ]);
-          })
-          .catch((err) => {
-            setNumComments((numComments) => [...numComments, 0]);
-            console.log(err);
-          });
-      }
+         }
+
 
       console.log("numComments", numComments);
       // setPostId(res.data.pos)
