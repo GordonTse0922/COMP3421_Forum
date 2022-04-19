@@ -19,6 +19,7 @@ class Home extends React.Component {
       showSignup: false,
       showCategory:false,
       notLogin: true,
+      userId: 0,
       topicId: 0,
       homeUrl: "http://localhost:3000",
     };
@@ -28,7 +29,8 @@ class Home extends React.Component {
 
   checkLogin(childData) {
     console.log("childData", childData);
-    this.setState({ notLogin: childData });
+    this.setState({ notLogin: childData[0] });
+    this.setState({userId: childData[1]});
   }
   checkClickTopic(childData){
     this.setState({ showTopic: childData });
@@ -127,7 +129,7 @@ class Home extends React.Component {
         
         )} */}
         {this.state.showCategory && (
-          <Category/>
+          <Category userId={this.state.userId}/>
         )}
         {/* {this.state.showTopic && (
           <TopicList />

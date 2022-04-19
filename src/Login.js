@@ -31,7 +31,7 @@ class Login extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ notLogin: false });
-        this.props.parentCallback(false);
+        this.props.parentCallback(false,parseInt(res.data.user.id));
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +139,7 @@ class Login extends React.Component {
               </p>
             </div>
           </div>
-        )}
+        )} 
       </>
     );
   }
