@@ -18,11 +18,11 @@ function Discussion (){
     const [post, setPost] = useState([]);
 
     useEffect(() => {
-        getPosts();
-        getComments();
-    },[]);
+        getPosts(postId);
+        getComments(postId);
+    }, []);
 
-    const getComments = async () => {
+    const getComments = async (postId) => {
         try{
             const id = postId['postId']
             const res = await axios.get('http://127.0.0.1:5000/comments', {params: {postId: id}});
@@ -35,7 +35,7 @@ function Discussion (){
         }
     }
 
-    const getPosts = async departmentId => {
+    const getPosts = async (postId) => {
         try{
             const id = postId['postId']
             const res = await axios.get('http://127.0.0.1:5000/post', {params: {id: id}});
@@ -58,12 +58,13 @@ function Discussion (){
           .then((res) => {
             console.log(res.data);
             console.log("sucessful")
+            getPosts(postId);
+            getComments(postId);
           })
           .catch((err) => {
             console.log(err);
             console.log("fail")
           });
-        
     }
 
     return (
