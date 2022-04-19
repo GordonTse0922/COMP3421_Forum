@@ -19,6 +19,7 @@ import ContantUs from "./contact";
 import TopicList from "./TopicList";
 import Discussion from "./discussion";
 import { Col } from "react-bootstrap";
+export const API_URL = process.env.API_URl;
 
 function App() {
 
