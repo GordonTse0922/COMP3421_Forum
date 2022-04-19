@@ -6,11 +6,7 @@ import Login from "./Login";
 import AddPost from "./AddPost";
 import TopicList from "./TopicList";
 
-function parentCallback(userToken){
-  sessionStorage.setItem('Login', userToken["login"]);
-  sessionStorage.setItem('UserId', userToken["userId"]);
-  sessionStorage.setItem('UserName', userToken["userName"]);
-}
+
 
 class Home extends React.Component {
   constructor() {
@@ -28,7 +24,16 @@ class Home extends React.Component {
       topicId: 0
     };
     this.checkClickTopic = this.checkClickTopic.bind(this);
+    this.parentCallback = this.parentCallback.bind(this);
   }
+  parentCallback(userToken){
+    sessionStorage.setItem('Login', userToken["login"]);
+    sessionStorage.setItem('UserId', userToken["userId"]);
+    sessionStorage.setItem('UserName', userToken["userName"]);
+    this.setState({notLogin:false});
+  }
+
+
 
   checkClickTopic(childData){
     this.setState({ showTopic: childData });
@@ -91,7 +96,7 @@ class Home extends React.Component {
             </ul>
           </div>
         </nav>
-        {!sessionStorage.getItem('Login') && (
+        {!sessionStorage.getItem('Login') && this.state.notLogin && (
           <div class="alert alert-success">
             <div class="btn-group">
               Create an account for this website {/* <Link to="/Signup"> */}
@@ -120,7 +125,7 @@ class Home extends React.Component {
           </div>
         )}
 
-        <Login parentCallback={parentCallback} />
+        <Login parentCallback={this.parentCallback} />
         <Signup />
         {/* {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
           <Category parentCallback={this.checkClickTopic} />
