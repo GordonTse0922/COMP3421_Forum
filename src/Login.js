@@ -32,7 +32,7 @@ class Login extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({ Login: true });
-        this.props.parentCallback({"login":true, "userId":parseInt(res.data.user.id)});
+        this.props.parentCallback({"login":true, "userId":parseInt(res.data.user.id),"userName":res.data.user.name});
       })
       .catch((err) => {
         console.log(err);
@@ -126,7 +126,7 @@ class Login extends React.Component {
             <div class="btn-group">
               <p class="text-dark">
                 {" "}
-                Welcome <b>{sessionStorage.getItem('UserId')}</b>
+                Welcome <b>{sessionStorage.getItem('UserName')}</b>
                 {/* <Link to="/Home"> */}
                   <button
                     type="button"

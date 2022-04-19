@@ -9,6 +9,7 @@ import TopicList from "./TopicList";
 function parentCallback(userToken){
   sessionStorage.setItem('Login', userToken["login"]);
   sessionStorage.setItem('UserId', userToken["userId"]);
+  sessionStorage.setItem('UserName', userToken["userName"]);
 }
 
 class Home extends React.Component {
@@ -118,12 +119,12 @@ class Home extends React.Component {
             </div>
           </div>
         )}
-        
+
         <Login parentCallback={parentCallback} />
         <Signup />
         {/* {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
           <Category parentCallback={this.checkClickTopic} />
-        
+
         )} */}
         {this.state.showCategory && (
           <Category />
