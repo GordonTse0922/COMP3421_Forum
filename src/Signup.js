@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
+import { API_URL } from "./App";
 
 class Signup extends React.Component {
   constructor() {
@@ -25,7 +26,7 @@ class Signup extends React.Component {
     console.log("password",this.state.passward);
 
     axios
-      .post("http://127.0.0.1:5000/user", {
+      .post(`${API_URL}/user`, {
         name: this.state.name,
         email: this.state.email,
         password: this.state.passward,
