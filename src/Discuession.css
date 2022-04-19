@@ -1,0 +1,29 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.title{
+    border-bottom: 2px solid black;
+}
+
+.discussion {
+    font-size: medium;
+    width: 100%;
+    height: auto;
+    border-style: none none dashed solid ;
+    border-width: 2px;
+    padding: 20px 30px 40px 30px;
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+}
+
+.session {
+    padding: 5px;
+}
+
+.summary {
+    padding: 0 0 0 20px;
+}

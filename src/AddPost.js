@@ -1,6 +1,6 @@
 import axios from "axios";
 import * as React from "react";
-
+import { Link, useParams} from "react-router-dom";
 
 class AddPost extends React.Component {
   constructor() {
@@ -9,11 +9,15 @@ class AddPost extends React.Component {
     this.state = {
       title: "",
       content: "",
-
+      userId: "",
+      departmentId: 1,
+      
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log(this.departmentId)
   }
 
+  
   handleSubmit(event) {
     event.preventDefault();
     console.log("title",this.state.title);

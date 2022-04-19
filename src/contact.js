@@ -34,6 +34,7 @@ class ContantUs extends React.Component {
             console.log(err);
             console.log("fail")
           });
+        
     }
 
     render(){

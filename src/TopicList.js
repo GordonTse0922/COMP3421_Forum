@@ -10,7 +10,6 @@ import Home from "./Home";
 function TopicList (){
     //const { departmentId } = useParams();
 
-
     const departmentId = useParams();
     const [posts, setPosts]= useState([]);
     const [department, setDepartment] = useState(0);
@@ -81,7 +80,7 @@ function TopicList (){
 
                             Remain respectful of other members at all times. </p>*/}
                     </div>
-                    <Link to="/AddPost">
+                    <Link to={`/AddPost/${departmentId['id']}`}>
                         <button
                             className="addtopic"
                             data-toggle="modal"
@@ -103,8 +102,10 @@ function TopicList (){
                             </div>
                         </div>
                         <div class="summary">
-                            <p>Asked at {post.created_at}</p>
-                            <h3>{post.title}</h3>
+                            <p>Asked by at {post.created_at}</p>
+                            <Link to={`/Discussion/${post.id}`} style={{ textDecoration: 'none', color: 'black' }}>
+                                <h3>{post.title}</h3>
+                            </Link>
                             <div class="details">
                                 {post.content}
                             </div>
