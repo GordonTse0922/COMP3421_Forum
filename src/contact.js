@@ -36,6 +36,9 @@ class ContantUs extends React.Component {
             console.log("fail")
           });
         
+        setTimeout(() => {
+            window.location.reload(false);
+        }, 2000)
     }
 
     render(){

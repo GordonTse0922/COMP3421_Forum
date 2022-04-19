@@ -12,7 +12,7 @@ class Login extends React.Component {
       email: "",
       passward: "",
 
-      notLogin: true,
+      Login: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -30,8 +30,8 @@ class Login extends React.Component {
       })
       .then((res) => {
         console.log(res.data);
-        this.setState({ notLogin: false });
-        this.props.parentCallback(false,parseInt(res.data.user.id));
+        this.setState({ Login: true });
+        this.props.parentCallback({"login":true, "userId":parseInt(res.data.user.id)});
       })
       .catch((err) => {
         console.log(err);
@@ -40,8 +40,9 @@ class Login extends React.Component {
 
   handleLogout(event) {
     event.preventDefault();
-    this.setState({notLogin: true});
+    this.setState({Login: false});
     this.props.parentCallback(true);
+    sessionStorage.clear()
   }
 
   render() {
@@ -119,12 +120,12 @@ class Login extends React.Component {
             </div>
           </div>
         </div>
-        {!this.state.notLogin && (
+        {sessionStorage.getItem('Login') && (
           <div class="alert alert-success" role="alert">
             <div class="btn-group">
               <p class="text-dark">
                 {" "}
-                Welcome <b>{this.state.email}</b>
+                Welcome <b>{sessionStorage.getItem('UserId')}</b>
                 {/* <Link to="/Home"> */}
                   <button
                     type="button"

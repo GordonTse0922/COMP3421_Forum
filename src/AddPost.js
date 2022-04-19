@@ -2,7 +2,8 @@ import axios from "axios";
 import React, {useState} from "react";
 
 function AddPost(departmentId) {
-  const userId = 1;
+  const userId = sessionStorage.getItem('UserId');
+  
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -10,8 +11,8 @@ function AddPost(departmentId) {
     event.preventDefault();
     console.log("title",title);
     console.log("content",content);
-
-    await axios
+    if (sessionStorage.getItem('Login') === "true") {
+      await axios
       .post("http://127.0.0.1:5000/post", {
         title: title,
         content: content,
@@ -29,6 +30,12 @@ function AddPost(departmentId) {
       });
 
       window.location.reload(false);
+    }
+    else{
+      alert("You need to login first")
+
+      window.location.reload(false);
+    }
   }
 
   return (

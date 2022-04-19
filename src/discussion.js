@@ -10,7 +10,7 @@ import "./discussion.css";
 function Discussion() {
   //const { departmentId } = useParams();
 
-  const userId = 1;
+  const userId = sessionStorage.getItem('UserId');
   const postId = useParams();
   const [comments, setComments] = useState([]);
   const [numComments, setnumComments] = useState(0);
@@ -67,23 +67,32 @@ function Discussion() {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    await axios
-      .post("http://127.0.0.1:5000/comment", {
-        user_id: userId,
-        post_id: postId["postId"],
-        content: content,
-      })
-      .then((res) => {
-        console.log(res.data);
-        console.log("sucessful");
-        getPosts(postId);
-        getComments(postId);
-      })
-      .catch((err) => {
-        console.log(err);
-        console.log("fail");
-      });
+    if (sessionStorage.getItem('Login') === "true") {
+        event.preventDefault();
+        await axios
+        .post("http://127.0.0.1:5000/comment", {
+            user_id: userId,
+            post_id: postId["postId"],
+            content: content,
+        })
+        .then((res) => {
+            console.log(res.data);
+            console.log("sucessful");
+            getPosts(postId);
+            getComments(postId);
+            setContent("");
+        })
+        .catch((err) => {
+            console.log(err);
+            console.log("fail");
+        });
+        window.location.reload(false);
+    }
+    else{
+        alert("You need to login first")
+
+        window.location.reload(false);
+    }
   };
 
   return (

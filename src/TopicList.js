@@ -9,6 +9,8 @@ import AddPost from "./AddPost";
 //const departmentId = 1;
 
 function TopicList() {
+    const userId = sessionStorage.getItem('UserId')
+    console.log("userId:", userId)
   //const { departmentId } = useParams();
 
   // const userId = useParams();

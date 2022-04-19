@@ -17,18 +17,11 @@ import Signup from "./Signup";
 import Login from "./Login";
 import ContantUs from "./contact";
 import TopicList from "./TopicList";
-import AddPost from "./AddPost";
 import Discussion from "./discussion";
 import { Col } from "react-bootstrap";
 
 function App() {
-  // const homeUrl ="http://localhost:3000";
-  const [homeUrl, setUrl] = useState("http://localhost:3000");
-  useEffect(() => {
-    setUrl(window.location.origin);
-    console.log("window.location.origin",homeUrl);
-    // getNumOfComment(postId);
-  });
+
   return (
     <>
       <Router>
@@ -42,7 +35,6 @@ function App() {
           <Route exact path="/About" element={<About />} />
           <Route exact path="/ContantUs" element={<ContantUs />} />
           <Route exact path="/TopicList/:id" element={<TopicList />} />
-          <Route exact path="/AddPost/:departmentId" element={<AddPost />} />
           <Route exact path="/Discussion/:postId" element={<Discussion />} />
         </Routes>
       </Router>
