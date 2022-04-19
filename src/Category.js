@@ -25,17 +25,17 @@ class Category extends React.Component {
         console.log(err);
       });
   }
-  getId (){
-    axios
-    .get("http://127.0.0.1:5000/departments")
-    .then((res) => {
-      console.log(res.data);
-      this.setState({ departments: res.data.departments });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+//   getId (){
+//     axios
+//     .get("http://127.0.0.1:5000/departments")
+//     .then((res) => {
+//       console.log(res.data);
+//       this.setState({ departments: res.data.departments });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+//   }
   clickTopic(){
     // event.preventDefault();
 

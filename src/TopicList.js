@@ -10,31 +10,49 @@ import Home from "./Home";
 function TopicList (){
     //const { departmentId } = useParams();
 
+   
     const departmentId = useParams();
     const [posts, setPosts]= useState([]);
+    // const [postId, setPostId]= useState(0);
     const [department, setDepartment] = useState(0);
     const [numPosts, setNumPosts] = useState(0);
-    const [numComments, setNumComments] = useState(0);
+    const [numComments, setNumComments] = useState([]);
 
     useEffect(() => {
+        // getPosts(departmentId);
         getDepartment(departmentId);
         getPosts(departmentId);
+        // getNumOfComment(postId);
     },[]);
-    // useEffect(()=>getPosts(departmentId)
-    // .then(response=>{
-    //     console.log(response.data.posts);
-    // }),[])
-
-    // useEffect(() => {
-    // }, numPosts);
-
+    
     const getPosts = async departmentId => {
         try{
             departmentId = parseInt(departmentId['id'])
             const res = await axios.get('http://127.0.0.1:5000/posts', {params: {id: departmentId}});
+            console.log("hi");
             setNumPosts(res.data.posts.length);
             setPosts(res.data.posts);
-            console.log(res.data.posts);
+            for (let i = 0; i < res.data.posts.length; i++) {
+                let id = res.data.posts[i].id;
+                console.log("id:",id);
+                await axios
+                    .get("http://127.0.0.1:5000/comments", {params: {postId: id}})
+                    .then((res2) => {
+                        console.log(res2.data.comments.length);
+                        console.log(res2.data);
+                        // arr.push([res2.data.comments.length])
+                        setNumComments( numComments => [...numComments, res2.data.comments.length])
+                    
+                    })
+                    .catch((err) => {
+                        setNumComments( numComments => [...numComments, 0])
+                        console.log(err);
+                    });
+            }
+            
+            console.log("numComments",numComments);
+            // setPostId(res.data.pos)
+            // console.log(res.data.posts);
             return res;
         } catch (err) {
             console.log(err.message);
@@ -51,18 +69,16 @@ function TopicList (){
             console.log(err.message);
         }
     }
-
-    const getNumOfComment = async departmentId => {
-        try{
-            departmentId = parseInt(departmentId['id'])
-            const res = await axios.get("http://127.0.0.1:5000/comments", {params: {id: departmentId}});
-            setNumComments(res.data.comments.length);
-            console.log(numComments)
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
-
+    // const getNumOfComment = async postId => {
+    //     try{
+    //         postId = parseInt(postId['id'])
+    //         const res = await axios.get("http://127.0.0.1:5000/comments", {params: {id: departmentId}});
+    //         setNumComments(res.data.comments.length);
+    //         console.log(numComments)
+    //     } catch (err) {
+    //         console.log(err.message);
+    //     }
+    // }
     return (
         <>
         <div>
@@ -92,11 +108,11 @@ function TopicList (){
                 </div>
             </div>
             <div class="container">
-                {posts.map((post) => (
+                {posts.map((post,index) => (
                     <div class="post">
                         <div class="stat">
                             <div class="value">
-                                <strong>{numComments}</strong>
+                                <strong>{numComments[index]}</strong>
                                 <br></br>
                                 comments
                             </div>
