@@ -3,7 +3,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import "./TopicList.css";
 import { Link, useParams} from "react-router-dom";
-import "./Discuession.css";
+import "./discussion.css";
 
 //const departmentId = 1;
 
@@ -49,7 +49,7 @@ function Discussion (){
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        axios
+        await axios
           .post("http://127.0.0.1:5000/comment", {
             user_id: userId,
             post_id: postId['postId'],

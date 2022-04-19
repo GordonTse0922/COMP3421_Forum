@@ -51,9 +51,9 @@ function TopicList (){
                     });
             }
             
-            // console.log("numComments",numComments);
+            console.log("numComments",numComments);
             // setPostId(res.data.pos)
-            console.log(res.data.posts);
+            // console.log(res.data.posts);
             return res;
         } catch (err) {
             console.log(err.message);
@@ -97,7 +97,7 @@ function TopicList (){
 
                             Remain respectful of other members at all times. </p>*/}
                     </div>
-                    <Link to={`/AddPost/${departmentId['id']}`}>
+                    {/*<Link to={`/AddPost/${departmentId['id']}`}>*/}
                         <button
                             className="addtopic"
                             data-toggle="modal"
@@ -105,9 +105,10 @@ function TopicList (){
                         >
                         + New Topic
                         </button>
-                    </Link>
+                    {/*</Link>*/}
                 </div>
             </div>
+            <AddPost departmentId={departmentId['id']}/>
             <div class="container">
                 {posts.map((post,index) => (
                     <div class="post">
@@ -130,9 +131,7 @@ function TopicList (){
                     </div>
                 ))}
             </div>
-        </div>
-        <AddPost/>
-        </>
+        </div></>
     );
 }
 

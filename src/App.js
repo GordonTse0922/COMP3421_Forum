@@ -18,7 +18,7 @@ import Login from "./Login";
 import ContantUs from "./contact";
 import TopicList from "./TopicList";
 import AddPost from "./AddPost";
-import Discussion from "./Discuession";
+import Discussion from "./discussion";
 import { Col } from "react-bootstrap";
 
 function App() {

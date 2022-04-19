@@ -29,6 +29,7 @@ class ContantUs extends React.Component {
           .then((res) => {
             console.log(res.data);
             console.log("sucessful")
+            alert("Your feedback is submitted. Thank you");
           })
           .catch((err) => {
             console.log(err);
