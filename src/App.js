@@ -22,7 +22,6 @@ import { Col } from "react-bootstrap";
 export const API_URL = 'https://comp3421-server.herokuapp.com';
 
 function App() {
-
   return (
     <>
       <Router>

@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
+import { API_URL } from "./App";
 
 class ContantUs extends React.Component {  
     constructor() {
@@ -21,7 +22,7 @@ class ContantUs extends React.Component {
         console.log("feedback",this.state.feedback);
     
         axios
-          .post("http://127.0.0.1:5000/contact", {
+          .post(`${API_URL}/contact`, {
             name: this.state.name,
             email: this.state.email,
             feedback: this.state.feedback

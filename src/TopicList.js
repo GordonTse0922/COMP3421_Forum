@@ -5,6 +5,7 @@ import "./TopicList.css";
 import { Link, useParams } from "react-router-dom";
 import Home from "./Home";
 import AddPost from "./AddPost";
+import { API_URL } from "./App";
 
 //const departmentId = 1;
 
@@ -34,7 +35,7 @@ function TopicList() {
   const getPosts = async (departmentId) => {
     try {
       departmentId = parseInt(departmentId["id"]);
-      const res = await axios.get("http://127.0.0.1:5000/posts", {
+      const res = await axios.get(`${API_URL}/posts`, {
         params: { id: departmentId },
       });
       setNumPosts(res.data.posts.length);
@@ -42,7 +43,7 @@ function TopicList() {
       console.log(res.data.posts);
       for (let i = 0; i < res.data.posts.length; i++) {
         await axios
-          .get("http://127.0.0.1:5000/user", { params: { id:  res.data.posts[i].user_id} })
+          .get(`${API_URL}/user`, { params: { id:  res.data.posts[i].user_id} })
           .then((res2) => {
             console.log(res2.data);
             // arr.push([res2.data.comments.length])
@@ -62,7 +63,7 @@ function TopicList() {
         let id = res.data.posts[i].id;
         console.log("id:", id);
         await axios
-          .get("http://127.0.0.1:5000/comments", { params: { postId: id } })
+          .get(`${API_URL}/comments`, { params: { postId: id } })
           .then((res2) => {
             console.log(res2.data.comments.length);
             console.log(res2.data);
@@ -91,7 +92,7 @@ function TopicList() {
 const getDepartment = async (departmentId) => {
   try {
     departmentId = parseInt(departmentId["id"]);
-    const res = await axios.get("http://127.0.0.1:5000/department", {
+    const res = await axios.get(`${API_URL}/department`, {
       params: { id: departmentId },
     });
     setDepartment(res.data.departments.name);
@@ -103,7 +104,7 @@ const getDepartment = async (departmentId) => {
 const handleAddPost = async (departmentId) => {
   try {
     departmentId = parseInt(departmentId["id"]);
-    const res = await axios.get("http://127.0.0.1:5000/department", {
+    const res = await axios.get(`${API_URL}/department`, {
       params: { id: departmentId },
     });
     setDepartment(res.data.departments.name);

@@ -4,6 +4,7 @@ import axios from "axios";
 import "./TopicList.css";
 import { Link, useParams } from "react-router-dom";
 import "./discussion.css";
+import { API_URL } from "./App";
 
 //const departmentId = 1;
 
@@ -26,7 +27,7 @@ function Discussion() {
   const getComments = async (postId) => {
     try {
       const id = postId["postId"];
-      const res = await axios.get("http://127.0.0.1:5000/comments", {
+      const res = await axios.get(`${API_URL}/comments`, {
         params: { postId: id },
       });
       setnumComments(res.data.comments.length);
@@ -34,7 +35,7 @@ function Discussion() {
       console.log(res.data.comments);
       for (let i = 0; i < res.data.comments.length; i++) {
         await axios
-          .get("http://127.0.0.1:5000/user", {
+          .get(`${API_URL}/user`, {
             params: { id: res.data.comments[i].user_id },
           })
           .then((res2) => {
@@ -55,7 +56,7 @@ function Discussion() {
   const getPosts = async (postId) => {
     try {
       const id = postId["postId"];
-      const res = await axios.get("http://127.0.0.1:5000/post", {
+      const res = await axios.get(`${API_URL}/post`, {
         params: { id: id },
       });
       setPost(res.data.post);
@@ -70,7 +71,7 @@ function Discussion() {
     if (sessionStorage.getItem('Login') === "true") {
         event.preventDefault();
         await axios
-        .post("http://127.0.0.1:5000/comment", {
+        .post(`${API_URL}/comment`, {
             user_id: userId,
             post_id: postId["postId"],
             content: content,

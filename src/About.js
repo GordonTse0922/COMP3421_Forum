@@ -1,11 +1,16 @@
 import "./App.css";
 import * as React from "react";
 
+function LeaveHomepage(){
+  sessionStorage.setItem('HomePage', "False");
+}
+
 class About extends React.Component {
   // componentDidMount(){
   //   window.location.href = "https://localhost:3000/About";
   // }
   render() {
+    LeaveHomepage();
     return (
       <div class="container">
         <div class="card mb-3">

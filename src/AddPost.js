@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, {useState} from "react";
+import { API_URL } from "./App";
 
 function AddPost(departmentId) {
   const userId = sessionStorage.getItem('UserId');
@@ -13,7 +14,7 @@ function AddPost(departmentId) {
     console.log("content",content);
     if (sessionStorage.getItem('Login') === "true") {
       await axios
-      .post("http://127.0.0.1:5000/post", {
+      .post(`${API_URL}/post`, {
         title: title,
         content: content,
         user_id: userId,

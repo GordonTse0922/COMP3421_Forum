@@ -2,6 +2,7 @@ import "./App.css";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "./App";
 
 class Category extends React.Component {
   constructor() {
@@ -16,7 +17,7 @@ class Category extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://127.0.0.1:5000/departments")
+      .get(`${API_URL}/departments`)
       .then((res) => {
         console.log(res.data);
         this.setState({ departments: res.data.departments });
