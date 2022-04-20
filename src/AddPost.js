@@ -10,9 +10,10 @@ function AddPost(departmentId) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("title",title);
-    console.log("content",content);
+
     if (sessionStorage.getItem('Login') === "true") {
+      console.log("title",title);
+      console.log("content",content);
       await axios
       .post(`${API_URL}/post`, {
         title: title,

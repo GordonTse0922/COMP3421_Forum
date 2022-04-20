@@ -108,7 +108,7 @@ class Home extends React.Component {
             </ul>
           </div>
         </nav>
-        {this.state.notLogin && (
+        {!sessionStorage.getItem('Login') && (
           <div class="alert alert-success">
             <div class="btn-group">
               Create an account for this website {/* <Link to="/Signup"> */}
