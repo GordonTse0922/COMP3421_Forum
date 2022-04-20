@@ -35,7 +35,7 @@ class Home extends React.Component {
       sessionStorage.setItem('UserName', userToken["userName"]);
       this.setState({notLogin:false});
     }else{
-      sessionStorage.setItem('Login', false);
+      sessionStorage.setItem('Login', isLogin);
       sessionStorage.removeItem('UserId');
       sessionStorage.removeItem('UserName');
       this.setState({notLogin:true});
@@ -108,7 +108,7 @@ class Home extends React.Component {
             </ul>
           </div>
         </nav>
-        {!sessionStorage.getItem('Login') && (
+        {(!sessionStorage.getItem('Login') || this.state.notLogin) && (
           <div class="alert alert-success">
             <div class="btn-group">
               Create an account for this website {/* <Link to="/Signup"> */}
