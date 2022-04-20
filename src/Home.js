@@ -35,7 +35,7 @@ class Home extends React.Component {
       sessionStorage.setItem('UserName', userToken["userName"]);
       this.setState({notLogin:false});
     }else{
-      sessionStorage.setItem('Login', isLogin);
+      sessionStorage.removeItem('Login');
       sessionStorage.removeItem('UserId');
       sessionStorage.removeItem('UserName');
       this.setState({notLogin:true});

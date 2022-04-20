@@ -60,8 +60,6 @@ class Login extends React.Component {
   render() {
     return (
       <>
-
-
       <Modal show={this.state.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>PolyDiscuss Login</Modal.Title>
