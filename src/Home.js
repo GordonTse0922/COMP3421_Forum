@@ -20,7 +20,7 @@ class Home extends React.Component {
       showLogin: false,
       showSignup: false,
       showCategory:false,
-      notLogin: true,
+      notLogin: !sessionStorage.getItem('Login'),
       topicId: 0
     };
     this.checkClickTopic = this.checkClickTopic.bind(this);
@@ -108,7 +108,7 @@ class Home extends React.Component {
             </ul>
           </div>
         </nav>
-        {(!sessionStorage.getItem('Login') || this.state.notLogin) && (
+        { this.state.notLogin && (
           <div class="alert alert-success">
             <div class="btn-group">
               Create an account for this website {/* <Link to="/Signup"> */}

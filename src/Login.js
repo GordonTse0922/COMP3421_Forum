@@ -13,7 +13,7 @@ class Login extends React.Component {
     this.state = {
       email: "",
       passward: "",
-      Login: false,
+      Login: sessionStorage.getItem('Login'),
       showModal: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
@@ -26,6 +26,7 @@ class Login extends React.Component {
     event.preventDefault();
     console.log("this.state.email", this.state.email)
     console.log("this.state.pw", this.state.passward)
+    console.log(`${API_URL}/login`)
     axios
       .post(`${API_URL}/login`, {
         // name: this.state.name,

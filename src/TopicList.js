@@ -11,7 +11,8 @@ import { API_URL } from "./App";
 
 function TopicList() {
     const userId = sessionStorage.getItem('UserId')
-    console.log("userId:", userId)
+    const isLogin = sessionStorage.getItem('Login')
+    console.log("isLogin:", isLogin)
   //const { departmentId } = useParams();
 
   // const userId = useParams();
@@ -98,7 +99,6 @@ const handleAddPost = async (departmentId) => {
 //     }
 // }
   return (
-    <>
       <div>
         <div class="container my-2">
           <div class="jumbotron ">
@@ -150,7 +150,6 @@ const handleAddPost = async (departmentId) => {
           ))}
         </div>
       </div>
-    </>
   );
 }
 export default TopicList;
