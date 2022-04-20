@@ -43,6 +43,7 @@ class Login extends React.Component {
       })
       .catch((err) => {
         console.log(err);
+        alert("Please input valid email and password!")
       });
     this.setState({ showModal: false });
   }

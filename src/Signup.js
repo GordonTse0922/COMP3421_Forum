@@ -26,7 +26,6 @@ class Signup extends React.Component {
     console.log("password", this.state.passward);
     if (this.state.passward != this.state.confirmPassword) {
       alert("The password and confirm password does not match!");
-      window.location.reload(false);
     } else {
       axios
         .post(`${API_URL}/user`, {
