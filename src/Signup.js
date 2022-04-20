@@ -2,7 +2,7 @@ import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
 import { API_URL } from "./App";
-import {$} from "jquery"
+import { $ } from "jquery";
 
 class Signup extends React.Component {
   constructor() {
@@ -21,26 +21,30 @@ class Signup extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("name",this.state.name);
-    console.log("email",this.state.email);
-    console.log("password",this.state.passward);
-
-    axios
-      .post(`${API_URL}/user`, {
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.passward,
-        // confirm_password: this.state.confirmPassward,
-      })
-      .then((res) => {
-        console.log(res.data);
-        this.setState({ notSignup: false });
-        console.log("notSignup", this.state.notSignup);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      window.$('#signupModal').modal('hide');
+    console.log("name", this.state.name);
+    console.log("email", this.state.email);
+    console.log("password", this.state.passward);
+    if (this.state.passward != this.state.confirmPassword) {
+      alert("The password and confirm password does not match!");
+      window.location.reload(false);
+    } else {
+      axios
+        .post(`${API_URL}/user`, {
+          name: this.state.name,
+          email: this.state.email,
+          password: this.state.passward,
+          // confirm_password: this.state.confirmPassward,
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.setState({ notSignup: false });
+          console.log("notSignup", this.state.notSignup);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      window.$("#signupModal").modal("hide");
+    }
   }
 
   render() {
@@ -165,13 +169,12 @@ class Signup extends React.Component {
               class="close"
               data-dismiss="alert"
               aria-label="Close"
-              onClick={() => this.setState({notSignup: true})}
+              onClick={() => this.setState({ notSignup: true })}
             >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
         )}
-
       </>
     );
   }
