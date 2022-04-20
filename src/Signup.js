@@ -131,14 +131,6 @@ class Signup extends React.Component {
                       }
                     />
                   </div>
-                  {/* <div class="form-group form-check">
-                    <input
-                      type="checkbox"
-                      class="form-check-input"
-                      id="exampleCheck1"
-                    />
-                    <label class="form-check-label">Check me out</label>
-                  </div> */}
                   <br />
                   <button type="submit" class="btn btn-primary">
                     Submit

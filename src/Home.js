@@ -49,7 +49,6 @@ class Home extends React.Component {
 
   checkClickTopic(childData){
     this.setState({ showTopic: childData });
-    // this.setState({topicId: id});
     console.log("showTopic", childData);
   }
   render() {
@@ -80,24 +79,6 @@ class Home extends React.Component {
                 <Link to="/" class="nav-link cool-link" onClick={() => this.setState({showCategory:true})}>Home</Link>
               </li>
 
-              {/* <li class="nav-item active">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href={<Home />}
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Top Category
-                </a>
-                <div
-                  class="dropdown-menu"
-                  aria-labelledby="navbarDropdown"
-                ></div>
-              </li> */}
-
               <li class="nav-item active">
                 <Link to="/About" class="nav-link cool-link" onClick={() => this.setState({showCategory:false})}>About</Link>
               </li>
@@ -111,7 +92,7 @@ class Home extends React.Component {
         { this.state.notLogin && (
           <div class="alert alert-success">
             <div class="btn-group">
-              Create an account for this website {/* <Link to="/Signup"> */}
+              Create an account for this website 
               <button
                 type="button"
                 class="btn btn-success ml-2"
@@ -121,8 +102,6 @@ class Home extends React.Component {
               >
                 signup
               </button>
-              {/* </Link> */}
-              {/* <Link to="/Login"> */}
               <button
                 type="button"
                 class="btn btn-success ml-2"
@@ -132,23 +111,15 @@ class Home extends React.Component {
               >
                 login
               </button>
-              {/* </Link> */}
             </div>
           </div>
         )}
 
         <Login parentCallback={this.parentCallback}  ref={this.child}  />
         <Signup />
-        {/* {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
-          <Category parentCallback={this.checkClickTopic} />
-
-        )} */}
         {this.state.showCategory && (
           <Category />
         )}
-        {/* {this.state.showTopic && (
-          <TopicList />
-        )} */}
       </>
     );
   }

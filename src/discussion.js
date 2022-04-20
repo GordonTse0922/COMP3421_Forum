@@ -6,7 +6,6 @@ import { Link, useParams } from "react-router-dom";
 import "./discussion.css";
 import { API_URL } from "./App";
 
-//const departmentId = 1;
 
 function Discussion() {
   //const { departmentId } = useParams();
