@@ -56,16 +56,16 @@ class Category extends React.Component {
                 <div class="card h-100" style={{ width: '18rem', margin:'auto' }}>
                   <img src={'images/' + department.name + '.jpg'} class="card-img-top cat-img" alt="AMA" />
                   <div class="card-body">
-                    <a href={'/TopicList/' + department.id} >
+                    {/* <a href={'/TopicList/' + department.id} onClick={()=> this.clickTopic()}>
                       <h5 class="card-title">
                         {department.name}
                       </h5>
-                    </a>
-                    {/* <Link to={`/TopicList/${department.id}`} onClick={()=> this.clickTopic()}>
+                    </a> */}
+                    <Link to={`/TopicList/${department.id}`} onClick={()=> this.clickTopic()}>
                         <h5 class="card-title">
                             {department.name}
                         </h5>
-                    </Link> */}
+                    </Link>
                     <p class="card-text text-justify">
                       {department.description}
                     </p>

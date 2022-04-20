@@ -56,7 +56,7 @@ class Home extends React.Component {
     return (
       <>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand logo" href="#">
+          <a class="navbar-brand logo" href="/">
             PolyDiscuss
           </a>
           <button
