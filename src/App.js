@@ -19,7 +19,7 @@ import ContantUs from "./contact";
 import TopicList from "./TopicList";
 import Discussion from "./discussion";
 import { Col } from "react-bootstrap";
-export const API_URL = 'http://localhost:5000';
+export const API_URL = 'https://comp3421-server.herokuapp.com';
 
 function App() {
   return (
