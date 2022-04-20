@@ -25,12 +25,24 @@ class Home extends React.Component {
     };
     this.checkClickTopic = this.checkClickTopic.bind(this);
     this.parentCallback = this.parentCallback.bind(this);
+    this.child = React.createRef();
   }
   parentCallback(userToken){
-    sessionStorage.setItem('Login', userToken["login"]);
-    sessionStorage.setItem('UserId', userToken["userId"]);
-    sessionStorage.setItem('UserName', userToken["userName"]);
-    this.setState({notLogin:false});
+    var isLogin=userToken["login"];
+    if(isLogin){
+      sessionStorage.setItem('Login', userToken["login"]);
+      sessionStorage.setItem('UserId', userToken["userId"]);
+      sessionStorage.setItem('UserName', userToken["userName"]);
+      this.setState({notLogin:false});
+    }else{
+      sessionStorage.setItem('Login', false);
+      sessionStorage.removeItem('UserId');
+      sessionStorage.removeItem('UserName');
+      this.setState({notLogin:true});
+    }
+  }
+  update(isLogin){
+    this.setState({showLogin:isLogin});
   }
 
 
@@ -45,7 +57,7 @@ class Home extends React.Component {
       <>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
           <a class="navbar-brand logo" href="#">
-            iDiscuss
+            PolyDiscuss
           </a>
           <button
             class="navbar-toggler"
@@ -96,7 +108,7 @@ class Home extends React.Component {
             </ul>
           </div>
         </nav>
-        {!sessionStorage.getItem('Login') && this.state.notLogin && (
+        {this.state.notLogin && (
           <div class="alert alert-success">
             <div class="btn-group">
               Create an account for this website {/* <Link to="/Signup"> */}
@@ -116,7 +128,7 @@ class Home extends React.Component {
                 class="btn btn-success ml-2"
                 data-toggle="modal"
                 data-target="#loginModal"
-                onClick={() => this.setState({ showLogin: true })}
+                onClick={() => {this.setState({ showLogin: true });this.child.current.handleOpen();}}
               >
                 login
               </button>
@@ -125,7 +137,7 @@ class Home extends React.Component {
           </div>
         )}
 
-        <Login parentCallback={this.parentCallback} />
+        <Login parentCallback={this.parentCallback}  ref={this.child}  />
         <Signup />
         {/* {(!this.state.showAbout && !this.state.showContact && !this.state.showTopic) && (
           <Category parentCallback={this.checkClickTopic} />

@@ -4,7 +4,7 @@ import { API_URL } from "./App";
 
 function AddPost(departmentId) {
   const userId = sessionStorage.getItem('UserId');
-  
+
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -52,7 +52,7 @@ function AddPost(departmentId) {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="addpostModalLabel">
-                iDiscuss AddPost
+                PolyDiscuss AddPost
               </h5>
                 <button
                   type="button"

@@ -4,19 +4,22 @@ import Home from "./Home";
 import Slide from "./Slide";
 import { Link } from "react-router-dom";
 import { API_URL } from "./App";
+import { Button, Form, Modal } from "react-bootstrap";
 
 class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     // Set initial state
     this.state = {
       email: "",
       passward: "",
-
       Login: false,
+      showModal: false,
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleClose= this.handleClose.bind(this);
+    this.handleOpen= this.handleOpen.bind(this);
   }
 
   handleLogin(event) {
@@ -37,18 +40,61 @@ class Login extends React.Component {
       .catch((err) => {
         console.log(err);
       });
+      this.setState({ showModal: false });
   }
 
   handleLogout(event) {
     event.preventDefault();
     this.setState({Login: false});
-    this.props.parentCallback(true);
-    sessionStorage.clear()
+    this.props.parentCallback({"login":false});
+    // sessionStorage.clear()
+  }
+  handleClose(){
+    this.setState({ showModal: false });
+  }
+  handleOpen(){
+    this.setState({ showModal: true });
   }
 
   render() {
     return (
       <>
+
+
+      <Modal show={this.state.showModal} onHide={this.handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>PolyDiscuss Login</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={this.handleLogin}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" onChange={(event) =>
+                        this.setState({ email: event.target.value })
+                      }/>
+            <Form.Text className="text-muted">
+               We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" onChange={(event) =>
+                        this.setState({ passward: event.target.value })
+                      } />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+          Submit
+          </Button>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={this.handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* <>
         <div
           class="modal fade"
           id="loginModal"
@@ -60,7 +106,7 @@ class Login extends React.Component {
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="loginModalLabel">
-                  iDiscuss Login
+                  PolyDiscuss Login
                 </h5>
                 <button
                   type="button"
@@ -120,8 +166,8 @@ class Login extends React.Component {
               </form>
             </div>
           </div>
-        </div>
-        {sessionStorage.getItem('Login') && (
+        </div> */}
+        {this.state.Login && (
           <div class="alert alert-success" role="alert">
             <div class="btn-group">
               <p class="text-dark">

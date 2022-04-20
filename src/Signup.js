@@ -2,6 +2,7 @@ import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
 import { API_URL } from "./App";
+import {$} from "jquery"
 
 class Signup extends React.Component {
   constructor() {
@@ -12,7 +13,6 @@ class Signup extends React.Component {
       email: "",
       passward: "",
       confirmPassword: "",
-
       notSignup: true,
       hideModal: false,
     };
@@ -39,7 +39,8 @@ class Signup extends React.Component {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      window.$('#signupModal').modal('hide');
   }
 
   render() {
@@ -56,7 +57,7 @@ class Signup extends React.Component {
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="signupModalLabel">
-                  iDiscuss Signup
+                  PolyDiscuss Signup
                 </h5>
                 <button
                   type="button"

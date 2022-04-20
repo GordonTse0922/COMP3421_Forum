@@ -48,7 +48,7 @@ class Category extends React.Component {
     return (
       <>
         <div class="container my-3">
-          <h2 class="text-center"> iDiscuss- Browse Categories </h2>
+          <h2 class="text-center"> PolyDiscuss- Browse Categories </h2>
 
           <div class="row">
             {this.state.departments.map((department) => (
