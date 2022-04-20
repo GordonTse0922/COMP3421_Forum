@@ -1,7 +1,6 @@
 import axios from "axios";
 import * as React from "react";
 import Home from "./Home";
-import Slide from "./Slide";
 import { Link } from "react-router-dom";
 import { API_URL } from "./App";
 import { Button, Form, Modal } from "react-bootstrap";
